@@ -3,7 +3,7 @@ package org.dbb.doom;
 /**
  * Header of a WAD file.
  *
- * Created by dbarzen on 16.10.15.
+ * Created by dennis on 16.10.15.
  */
 public class WADHeader {
 
@@ -13,9 +13,14 @@ public class WADHeader {
     public static int SIZE_OF = 12;             // (3x 4 bytes)
 
     /**
-     * File type constant (magic number).
+     * File type constant for IWAD files (magic number).
      */
     public static String TYPE_IWAD = "IWAD";
+
+    /**
+     * File type constant for PWAD files (magic number).
+     */
+    public static String TYPE_PWAD = "PWAD";
 
     /**
      * Magic number.

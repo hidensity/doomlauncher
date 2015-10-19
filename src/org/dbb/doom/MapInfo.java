@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Class containing a WAD file's map information.
  *
- * Created by dbarzen on 19.10.15.
+ * Created by dennis on 19.10.15.
  */
 public class MapInfo {
 

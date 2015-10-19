@@ -1,6 +1,6 @@
 package org.dbb.doom;
 
-import org.dbb.doom.wadinfo.Doom2IWADInfo;
+import org.dbb.doom.wadinfo.*;
 import org.dbb.utils.Helpers;
 
 import java.io.File;
@@ -16,7 +16,7 @@ import java.util.List;
  * IWAD Manager
  * Class to retrieve an IWAD's information.
  *
- * Created by dbarzen on 16.10.15.
+ * Created by dennis on 16.10.15.
  */
 public class IWADManager {
 
@@ -27,8 +27,20 @@ public class IWADManager {
     static {
         PREDEFINED_IWAD = new ArrayList<>();
         // IMPORTANT:
-        // The order of these predefined IWADs absolutely needs to be kept!
-        PREDEFINED_IWAD.add(new Doom2IWADInfo());
+        // The order of these predefined IWADs absolutely needs to be kept!!!
+        // They must be sorted in identification order (easiest to recognize first).
+        PREDEFINED_IWAD.add(new FreeDMIWADInfo());                  // FreeDM
+        PREDEFINED_IWAD.add(new Freedoom2IWADInfo());               // Freedoom - Phase 2
+        PREDEFINED_IWAD.add(new Freedoom1IWADInfo());               // Freedoom - Phase 1
+        PREDEFINED_IWAD.add(new FreedoomDemoIWADInfo());            // Freedoom Demo
+        PREDEFINED_IWAD.add(new DoomBfgIWADInfo());                 // DOOM: BFG Edition
+        PREDEFINED_IWAD.add(new UltimateDoomIWADInfo());            // The Ultimate DOOM
+        PREDEFINED_IWAD.add(new DoomIWADInfo());                    // DOOM (Registered)
+        PREDEFINED_IWAD.add(new DoomSharewareIWADInfo());           // DOOM Shareware
+        PREDEFINED_IWAD.add(new TNTIWADInfo());                     // Final DOOM: TNT - Evilution
+        PREDEFINED_IWAD.add(new PlutoniaIWADInfo());                // Final DOOM: Plutonia Experiment
+        PREDEFINED_IWAD.add(new Doom2BfgIWADInfo());                // DOOM 2: BFG Edition
+        PREDEFINED_IWAD.add(new Doom2IWADInfo());                   // DOOM 2
     }
 
     /**
@@ -129,6 +141,9 @@ public class IWADManager {
 
         // Get the game information for this IWAD.
         this.iwadInfo = parseIWADInfo();
+        if (null == this.iwadInfo) {
+            throw new IllegalArgumentException("For the specified file, no IWAD definition could be retrieved.");
+        }
 
         // Close the WAD file.
         closeWAD();
@@ -138,7 +153,7 @@ public class IWADManager {
      * Gets the IWAD information.
      * @return IWADInfo
      */
-    public IWADInfo getIwadInfo() {
+    public IWADInfo getIWADInfo() {
         return this.iwadInfo;
     }
 
@@ -201,7 +216,13 @@ public class IWADManager {
     private boolean isIWAD() throws IOException {
         // Check magic number.
         return (null != this.header &&
-                new String(this.header.getMagicNumber()).equals(WADHeader.TYPE_IWAD)
+                null != this.header.getMagicNumber() &&
+                (
+                        new String(this.header.getMagicNumber()).equals(WADHeader.TYPE_IWAD) ||
+                        // In some cases, e.g. DOOM2 BFG, the original WAD file has PWAD as magic
+                        // number.
+                        new String(this.header.getMagicNumber()).equals(WADHeader.TYPE_PWAD)
+                )
         );
     }
 
@@ -271,21 +292,28 @@ public class IWADManager {
      * @return String
      */
     private IWADInfo parseIWADInfo() throws Exception {
+        IWADInfo iwi = null;
+
         // Check, whether the IWAD contains an "IWADINFO" lump.
         for (int i = this.numLumps - 1; i >= 0; i--) {
             if (this.lumps.get(i).getName().equals(IWADInfo.IWADINFO)) {
-                return IWADInfo.fromLump(this.lumps.get(i), this.fc);
+                iwi = IWADInfo.fromLump(this.lumps.get(i), this.fc);
             }
         }
 
         // IWAD file does not contain an IWADINFO lump. Try to find out
         // what IWAD file we are using.
         for (IWADInfo info : PREDEFINED_IWAD) {
-            if (this.lumpNames.containsAll(info.getMustContain())) {
-                return info;
+            if (null == iwi &&
+                this.lumpNames.containsAll(info.getMustContain())) {
+                iwi = info;
             }
         }
 
-        return null;
+        if (null != iwi) {
+            iwi.setLumps(this.lumpNames);
+        }
+
+        return iwi;
     }
 }

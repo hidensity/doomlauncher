@@ -6,7 +6,7 @@ import java.nio.channels.FileChannel;
 /**
  * WAD's lump definition.
  *
- * Created by dbarzen on 16.10.15.
+ * Created by dennis on 16.10.15.
  */
 public class WADLump {
 
@@ -106,6 +106,10 @@ public class WADLump {
             fc.read(buffer);
 
             this.lumpData = buffer.array();
+            // Restore original file pointer.
+            if (pos >= 0) {
+                fc.position(pos);
+            }
         }
 
         return this.lumpData;

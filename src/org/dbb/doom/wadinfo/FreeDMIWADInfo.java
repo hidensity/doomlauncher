@@ -3,36 +3,37 @@ package org.dbb.doom.wadinfo;
 import org.dbb.doom.GameCompatibility;
 import org.dbb.doom.GameType;
 import org.dbb.doom.IWADInfo;
-import org.dbb.doom.mapinfo.Doom2MapInfo;
+import org.dbb.doom.mapinfo.FreeDMMapInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * IWAD information for DOOM2.
+ * IWAD information for FreeDM.
  *
  * Created by dennis on 19.10.15.
  */
-public class Doom2IWADInfo extends IWADInfo {
+public class FreeDMIWADInfo extends IWADInfo {
 
     /**
-     * List of lumps to identify IWAD as DOOM2.
+     * List of lumps to identify IWAD as FreeDM.
      */
     private static final List<String> mustContain;
     static {
         mustContain = new ArrayList<>();
         mustContain.add("MAP01");
+        mustContain.add("FREEDM");
     }
 
     /**
-     * Creates an IWADInfo instance for DOOM2.
+     * Creates an IWADInfo instance for FreeDM.
      */
-    public Doom2IWADInfo() {
+    public FreeDMIWADInfo() {
         super();
-        setName("DOOM2 - Hell On Earth");
+        setName("FreeDM");
         setGameType(GameType.DOOM);
-        setCompatibility(GameCompatibility.GI_COMPATSHORTTEX);
-        setMapInfo(new Doom2MapInfo());
-        setMustContain(Doom2IWADInfo.mustContain);
+        setCompatibility(GameCompatibility.GI_NONE);
+        setMapInfo(new FreeDMMapInfo());
+        setMustContain(FreeDMIWADInfo.mustContain);
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * IWAD Information.
- * Created by dbarzen on 16.10.15.
+ * Created by dennis on 16.10.15.
  */
 public class IWADInfo {
 
@@ -33,7 +33,7 @@ public class IWADInfo {
     /**
      * Game compatibility.
      */
-    private GameCompatibility compatibility;
+    private int compatibility;
 
     /**
      * List of WADs to load.
@@ -110,10 +110,10 @@ public class IWADInfo {
 
     /**
      * Sets the IWAD's compatibility.
-     * @param compatibility GameCompatibility
+     * @param compatibility GameCompatibility constant.
      * @return IWADInfo
      */
-    public IWADInfo setCompatibility(GameCompatibility compatibility) {
+    public IWADInfo setCompatibility(int compatibility) {
         this.compatibility = compatibility;
         return this;
     }
@@ -174,8 +174,9 @@ public class IWADInfo {
 
     /**
      * Gets the IWAD's compatibility.
+     * @return int
      */
-    public GameCompatibility getCompatibility() {
+    public int getCompatibility() {
         return this.compatibility;
     }
 

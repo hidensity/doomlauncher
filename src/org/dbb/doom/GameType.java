@@ -3,7 +3,7 @@ package org.dbb.doom;
 /**
  * Game type constants.
  *
- * Created by dbarzen on 16.10.15.
+ * Created by dennis on 16.10.15.
  */
 public enum GameType {
 
