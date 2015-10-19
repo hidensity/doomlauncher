@@ -1,5 +1,8 @@
 package org.dbb.doom;
 
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+
 /**
  * WAD's lump definition.
  *
@@ -15,7 +18,7 @@ public class WADLump {
     /**
      * Lump's position in the WAD file.
      */
-    private int filePos;
+    private long filePos;
 
     /**
      * Lump's size.
@@ -28,13 +31,18 @@ public class WADLump {
     private String name;
 
     /**
+     * Lump's data.
+     */
+    private byte[] lumpData;
+
+    /**
      * Create a new WADLump instance.
      * @param filePos Lump's position in the WAD file.
      * @param size Lump's size.
      * @param name Lump's name (max. 8 bytes).
      * @throws IllegalArgumentException if any parameter is invalid.
      */
-    public WADLump(int filePos, int size, String name) {
+    public WADLump(long filePos, int size, String name) {
         String error =
                 (filePos < 0) ? "File position" :
                         (size < 0) ? "Size" : null;
@@ -49,13 +57,14 @@ public class WADLump {
         this.filePos = filePos;
         this.size = size;
         this.name = name;
+        this.lumpData = null;
     }
 
     /**
      * Gets the lump's position within the WAD.
-     * @return int
+     * @return long
      */
-    public int getFilePos() {
+    public long getFilePos() {
         return this.filePos;
     }
 
@@ -81,5 +90,24 @@ public class WADLump {
      */
     public String getNameRaw() {
         return this.name;
+    }
+
+    /**
+     * Reads the lump's data.
+     * @param fc FileChannel, used for reading.
+     * @return byte[]
+     */
+    public byte[] getLumpData(FileChannel fc) throws Exception {
+        if (null == this.lumpData) {
+            // Position the file pointer and read lump data to buffer.
+            ByteBuffer buffer = ByteBuffer.allocate(this.size);
+            long pos = fc.position();
+            fc.position(this.filePos);
+            fc.read(buffer);
+
+            this.lumpData = buffer.array();
+        }
+
+        return this.lumpData;
     }
 }

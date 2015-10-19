@@ -58,12 +58,12 @@ public class IWADManagerManagerTest {
     }
 
     /**
-     * Tests, whether IWADInfo has been created.
+     * Tests, whether IWADInfo for DOOM2 has been found.
      * @throws Exception
      */
     @Test
     public void testIWADInfoCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/DOOM2.WAD");
-        assertNotNull(iwm.getIwadInfo());
+        assertNotNull(iwm.getIwadInfo().getName().contains("DOOM2"));
     }
 }

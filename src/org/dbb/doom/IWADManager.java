@@ -1,5 +1,6 @@
 package org.dbb.doom;
 
+import org.dbb.doom.wadinfo.Doom2IWADInfo;
 import org.dbb.utils.Helpers;
 
 import java.io.File;
@@ -18,6 +19,17 @@ import java.util.List;
  * Created by dbarzen on 16.10.15.
  */
 public class IWADManager {
+
+    /**
+     * Predefined IWAD configurations.
+     */
+    public static final List<IWADInfo> PREDEFINED_IWAD;
+    static {
+        PREDEFINED_IWAD = new ArrayList<>();
+        // IMPORTANT:
+        // The order of these predefined IWADs absolutely needs to be kept!
+        PREDEFINED_IWAD.add(new Doom2IWADInfo());
+    }
 
     /**
      * File name of the IWADManager file.
@@ -76,14 +88,9 @@ public class IWADManager {
     private List<WADLump> lumps;
 
     /**
-     * TODO: open files:
-     * resourcefile.cpp
-     * file_wad.cpp <-- 347
-     * resourcefile.h
-     * d_main.h
-     * d_main.cpp
-     * w_wad.h
+     * List with found lump names.
      */
+    private List<String> lumpNames;
 
     /**
      * Creates a new IWADManager object.
@@ -121,7 +128,7 @@ public class IWADManager {
         this.lumps = readWADLumps();
 
         // Get the game information for this IWAD.
-        parseGameInfo();
+        this.iwadInfo = parseIWADInfo();
 
         // Close the WAD file.
         closeWAD();
@@ -158,8 +165,6 @@ public class IWADManager {
         try {
             this.wad = new RandomAccessFile(this.file, "r");
             this.fc = this.wad.getChannel();
-
-            this.iwadInfo = new IWADInfo();
         } catch (Exception e) {
             throw new IOException("IWAD file could not be read.", e);
         }
@@ -238,6 +243,7 @@ public class IWADManager {
 
             // Let's fill the lump list.
             List<WADLump> lumps = new ArrayList<>();
+            this.lumpNames = new ArrayList<>();
 
             for (int i = 0; i < this.numLumps; i++) {
                 int offset = i * WADLump.SIZE_OF;
@@ -251,6 +257,7 @@ public class IWADManager {
                                 Helpers.byteArrayToBigEndianInt(size) : Helpers.byteArrayToLittleEndianInt(size),
                         new String(name));
                 lumps.add(wl);
+                lumpNames.add(wl.getName());
             }
 
             return lumps;
@@ -263,12 +270,22 @@ public class IWADManager {
      * Parses a WAD file and gets the behind game information.
      * @return String
      */
-    private String parseGameInfo() {
+    private IWADInfo parseIWADInfo() throws Exception {
+        // Check, whether the IWAD contains an "IWADINFO" lump.
         for (int i = this.numLumps - 1; i >= 0; i--) {
-            if (this.lumps.get(i).getName().equals("IWADINFO")) {
-                return "foo";
+            if (this.lumps.get(i).getName().equals(IWADInfo.IWADINFO)) {
+                return IWADInfo.fromLump(this.lumps.get(i), this.fc);
             }
         }
+
+        // IWAD file does not contain an IWADINFO lump. Try to find out
+        // what IWAD file we are using.
+        for (IWADInfo info : PREDEFINED_IWAD) {
+            if (this.lumpNames.containsAll(info.getMustContain())) {
+                return info;
+            }
+        }
+
         return null;
     }
 }
