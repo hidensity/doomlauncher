@@ -29,6 +29,22 @@ public class IWADManager {
         // IMPORTANT:
         // The order of these predefined IWADs absolutely needs to be kept!!!
         // They must be sorted in identification order (easiest to recognize first).
+        PREDEFINED_IWAD.add(new HarmonyIWADInfo());                 // Harmony
+        PREDEFINED_IWAD.add(new Hacx2IWADInfo());                   // Hacx 2.0
+        PREDEFINED_IWAD.add(new HacxIWADInfo());                    // Hacx: Twitch'n Kill
+        PREDEFINED_IWAD.add(new UrbanBrawlIWADInfo());              // Action Doom 2: Urban Brawl
+        PREDEFINED_IWAD.add(new Chex3IWADInfo());                   // Chex(R) Quest 3
+        PREDEFINED_IWAD.add(new ChexIWADInfo());                    // Chex(R) Quest
+        PREDEFINED_IWAD.add(new StrifeIWADInfo());                  // Strife: Quest for the Sigil
+        PREDEFINED_IWAD.add(new StrifeTeaserNewIWADInfo());         // Strife: Teaser (New Version)
+        PREDEFINED_IWAD.add(new StrifeTeaserOldIWADInfo());         // Strife: Teaser (Old Version)
+        PREDEFINED_IWAD.add(new HexenIWADInfo());                   // Hexen: Beyond Heretic
+        PREDEFINED_IWAD.add(new HexenDDIWADInfo());                 // Hexen: DD
+        PREDEFINED_IWAD.add(new HexenSharewareIWADInfo());          // Hexen: Demo Version
+        PREDEFINED_IWAD.add(new BlasphemerIWADInfo());              // Blasphemer
+        PREDEFINED_IWAD.add(new HereticExtendedIWADInfo());         // Heretic: Shadow of the Serpent Riders
+        PREDEFINED_IWAD.add(new HereticIWADInfo());                 // Heretic
+        PREDEFINED_IWAD.add(new HereticSharewareIWADInfo());        // Heretic Shareware
         PREDEFINED_IWAD.add(new FreeDMIWADInfo());                  // FreeDM
         PREDEFINED_IWAD.add(new Freedoom2IWADInfo());               // Freedoom - Phase 2
         PREDEFINED_IWAD.add(new Freedoom1IWADInfo());               // Freedoom - Phase 1

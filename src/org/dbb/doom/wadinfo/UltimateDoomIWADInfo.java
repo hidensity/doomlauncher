@@ -3,13 +3,9 @@ package org.dbb.doom.wadinfo;
 import org.dbb.doom.GameCompatibility;
 import org.dbb.doom.GameType;
 import org.dbb.doom.IWADInfo;
-import org.dbb.doom.MapInfo;
-import org.dbb.doom.mapinfo.Doom2MapInfo;
 import org.dbb.doom.mapinfo.DoomMapInfo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * IWAD information for Ultimate DOOM.

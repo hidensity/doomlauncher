@@ -56,7 +56,7 @@ public class DoomMapInfo extends MapInfo {
     }
 
     /**
-     * Creates MapInfo object for Final DOOM: TNT - Evilution.
+     * Creates MapInfo object for DOOM.
      */
     public DoomMapInfo() {
         super(DoomMapInfo.mapNames);

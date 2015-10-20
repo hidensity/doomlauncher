@@ -137,4 +137,54 @@ public class IWADManagerManagerTest {
         IWADManager iwm = new IWADManager("assets/IWAD/freedoom2.wad");
         assertTrue(iwm.getIWADInfo() instanceof Freedoom2IWADInfo);
     }
+
+    /**
+     * Tests, whether IWADInfo for Heretic: Shadow of the Serpent Riders has been found.
+     * @throws Exception
+     */
+    @Test
+    public void testIWADInfoHereticExtendedCreated() throws Exception {
+        IWADManager iwm = new IWADManager("assets/IWAD/HERETIC.WAD");
+        assertTrue(iwm.getIWADInfo() instanceof HereticExtendedIWADInfo);
+    }
+
+    /**
+     * Tests, whether IWADInfo for Blasphemer has been found.
+     * @throws Exception
+     */
+    @Test
+    public void testIWADInfoBlasphemerCreated() throws Exception {
+        IWADManager iwm = new IWADManager("assets/IWAD/BLASPHEM.WAD");
+        assertTrue(iwm.getIWADInfo() instanceof BlasphemerIWADInfo);
+    }
+
+    /**
+     * Tests, whether IWADInfo for Hexen Demo has been found.
+     * @throws Exception
+     */
+    @Test
+    public void testIWADInfoHexenDemoCreated() throws Exception {
+        IWADManager iwm = new IWADManager("assets/IWAD/HEXEN_SW.WAD");
+        assertTrue(iwm.getIWADInfo() instanceof HexenSharewareIWADInfo);
+    }
+
+    /**
+     * Tests, whether IWADInfo for Hexen DD has been found.
+     * @throws Exception
+     */
+    @Test
+    public void testIWADInfoHexenDDCreated() throws Exception {
+        IWADManager iwm = new IWADManager("assets/IWAD/HEXDD.WAD");
+        assertTrue(iwm.getIWADInfo() instanceof HexenDDIWADInfo);
+    }
+
+    /**
+     * Tests, whether IWADInfo for Hexen has been found.
+     * @throws Exception
+     */
+    @Test
+    public void testIWADInfoHexenCreated() throws Exception {
+        IWADManager iwm = new IWADManager("assets/IWAD/HEXEN.WAD");
+        assertTrue(iwm.getIWADInfo() instanceof HexenIWADInfo);
+    }
 }

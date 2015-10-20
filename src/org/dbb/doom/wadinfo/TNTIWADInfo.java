@@ -3,7 +3,6 @@ package org.dbb.doom.wadinfo;
 import org.dbb.doom.GameCompatibility;
 import org.dbb.doom.GameType;
 import org.dbb.doom.IWADInfo;
-import org.dbb.doom.mapinfo.PlutoniaMapInfo;
 import org.dbb.doom.mapinfo.TNTMapInfo;
 
 import java.util.ArrayList;

@@ -17,15 +17,15 @@ public class FreeDMMapInfo extends MapInfo {
     private static final HashMap<String, String> mapNames;
     static {
         mapNames = new HashMap<>();
-        mapNames.put("MAP01", "Map 1: [no name]");
-        mapNames.put("MAP02", "Map 2: [no name]");
-        mapNames.put("MAP03", "Map 3: [no name]");
-        mapNames.put("MAP04", "Map 4: [no name]");
-        mapNames.put("MAP05", "Map 5: [no name]");
-        mapNames.put("MAP06", "Map 6: [no name]");
-        mapNames.put("MAP07", "Map 7: [no name]");
-        mapNames.put("MAP08", "Map 8: [no name]");
-        mapNames.put("MAP09", "Map 9: [no name]");
+        mapNames.put("MAP01", "Map 01: [no name]");
+        mapNames.put("MAP02", "Map 02: [no name]");
+        mapNames.put("MAP03", "Map 03: [no name]");
+        mapNames.put("MAP04", "Map 04: [no name]");
+        mapNames.put("MAP05", "Map 05: [no name]");
+        mapNames.put("MAP06", "Map 06: [no name]");
+        mapNames.put("MAP07", "Map 07: [no name]");
+        mapNames.put("MAP08", "Map 08: [no name]");
+        mapNames.put("MAP09", "Map 09: [no name]");
         mapNames.put("MAP10", "Map 10: [no name]");
         mapNames.put("MAP11", "Map 11: [no name]");
         mapNames.put("MAP12", "Map 12: [no name]");

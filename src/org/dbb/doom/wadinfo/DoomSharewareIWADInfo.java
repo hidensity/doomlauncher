@@ -3,6 +3,7 @@ package org.dbb.doom.wadinfo;
 import org.dbb.doom.GameCompatibility;
 import org.dbb.doom.GameType;
 import org.dbb.doom.IWADInfo;
+import org.dbb.doom.MapInfo;
 import org.dbb.doom.mapinfo.DoomMapInfo;
 import org.dbb.doom.mapinfo.TNTMapInfo;
 
@@ -33,7 +34,7 @@ public class DoomSharewareIWADInfo extends IWADInfo {
         setName("DOOM Shareware");
         setGameType(GameType.DOOM);
         setCompatibility(GameCompatibility.GI_COMPATSHORTTEX | GameCompatibility.GI_SHAREWARE);
-        setMapInfo(new DoomMapInfo());
+        setMapInfo(new MapInfo(new DoomMapInfo().getMapNames("E1M\\d")));
         setMustContain(DoomSharewareIWADInfo.mustContain);
     }
 }

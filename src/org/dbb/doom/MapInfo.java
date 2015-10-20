@@ -42,4 +42,22 @@ public class MapInfo {
     public Map<String, String> getMapNames() {
         return this.mapNames;
     }
+
+    /**
+     * Gets a sub-set of the map names, filtered by a regular expression on the map keys.
+     * @param regex String containing a regular expression.
+     * @return Map
+     */
+    public Map<String, String> getMapNames(String regex) {
+        HashMap<String, String> mapNames = new HashMap<>();
+
+        // Add matching keys to map.
+        this.mapNames.keySet().stream().filter(key ->
+                key.matches(regex)).forEach(key ->
+                    mapNames.put(key, this.mapNames.get(key)
+                )
+        );
+
+        return mapNames;
+    }
 }

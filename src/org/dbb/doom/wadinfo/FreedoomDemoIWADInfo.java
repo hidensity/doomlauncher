@@ -3,7 +3,7 @@ package org.dbb.doom.wadinfo;
 import org.dbb.doom.GameCompatibility;
 import org.dbb.doom.GameType;
 import org.dbb.doom.IWADInfo;
-import org.dbb.doom.mapinfo.DoomMapInfo;
+import org.dbb.doom.MapInfo;
 import org.dbb.doom.mapinfo.Freedoom1MapInfo;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class FreedoomDemoIWADInfo extends IWADInfo {
         setName("Freedom Demo");
         setGameType(GameType.DOOM);
         setCompatibility(GameCompatibility.GI_NONE);
-        setMapInfo(new Freedoom1MapInfo());
+        setMapInfo(new MapInfo(new Freedoom1MapInfo().getMapNames("E1M\\d")));
         setMustContain(FreedoomDemoIWADInfo.mustContain);
     }
 }

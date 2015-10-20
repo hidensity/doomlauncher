@@ -71,6 +71,7 @@ public class IWADInfo {
     public static IWADInfo fromLump(WADLump lump, FileChannel fc) throws Exception {
         try {
             String lumpData = new String(lump.getLumpData(fc));
+            // TODO: lumpData needs to be parsed.
             return new IWADInfo();
         } catch (Exception e) {
             throw new IllegalArgumentException("Could not read IWADINFO lump.", e);

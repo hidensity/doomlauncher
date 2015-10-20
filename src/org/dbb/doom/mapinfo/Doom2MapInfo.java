@@ -17,15 +17,15 @@ public class Doom2MapInfo extends MapInfo {
     private static final HashMap<String, String> mapNames;
     static {
         mapNames = new HashMap<>();
-        mapNames.put("MAP01", "Level 1: Entryway");
-        mapNames.put("MAP02", "Level 2: Underhalls");
-        mapNames.put("MAP03", "Level 3: The Gantlet");
-        mapNames.put("MAP04", "Level 4: The Focus");
-        mapNames.put("MAP05", "Level 5: The Waste Tunnels");
-        mapNames.put("MAP06", "Level 6: The Crusher");
-        mapNames.put("MAP07", "Level 7: Dead Simple");
-        mapNames.put("MAP08", "Level 8: Tricks and Traps");
-        mapNames.put("MAP09", "Level 9: The Pit");
+        mapNames.put("MAP01", "Level 01: Entryway");
+        mapNames.put("MAP02", "Level 02: Underhalls");
+        mapNames.put("MAP03", "Level 03: The Gantlet");
+        mapNames.put("MAP04", "Level 04: The Focus");
+        mapNames.put("MAP05", "Level 05: The Waste Tunnels");
+        mapNames.put("MAP06", "Level 06: The Crusher");
+        mapNames.put("MAP07", "Level 07: Dead Simple");
+        mapNames.put("MAP08", "Level 08: Tricks and Traps");
+        mapNames.put("MAP09", "Level 09: The Pit");
         mapNames.put("MAP10", "Level 10: Refueling Base");
         mapNames.put("MAP11", "Level 11: 'o' Of Destruction");
         mapNames.put("MAP12", "Level 12: The Factory");
