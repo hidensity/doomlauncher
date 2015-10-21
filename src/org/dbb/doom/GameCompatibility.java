@@ -16,5 +16,5 @@ public class GameCompatibility {
     public static final int GI_COMPATSTAIRS = 0x00000020;           // Same for stair building.
     public static final int GI_COMPATPOLY1 = 0x00000040;            // Hexen's MAP36 needs old polyobject drawing.
     public static final int GI_COMPATPOLY2 = 0x00000080;            // So does HEXDD's MAP47.
-    public static final int GI_NOTEXTCOLOR = 0x00000100;             // Chex Quest 3 would have everything green.
+    public static final int GI_NOTEXTCOLOR = 0x00000100;            // Chex Quest 3 would have everything green.
 }
