@@ -82,6 +82,13 @@ public class WADManager {
     protected byte[] fileData;
 
     /**
+     * IDs of maps defined in the WAD file.
+     * These IDs (e.g. "E1M7", "MAP05" are used by the "warp" command.
+     * Not to mix up with the map's name, like e.g. "Hangar", etc.
+     */
+    protected List<String> mapIds;
+
+    /**
      * Creates a new WADManager object.
      * @param filename Name of the WADManager file to use.
      * @throws InvalidWADException if an invalid WAD file has been specified.
@@ -146,6 +153,9 @@ public class WADManager {
 
         // Get the lumps from WAD.
         this.lumps = readWADLumps();
+
+        // Find maps in the WAD file.
+        this.mapIds = findMaps();
     }
 
     /**
@@ -169,6 +179,7 @@ public class WADManager {
             this.lumps = null;
             this.lumpNames = null;
             this.fileData = null;
+            this.mapIds = null;
         }
     }
 
@@ -305,6 +316,52 @@ public class WADManager {
         } catch (Exception e) {
             throw new IOException("Lumps could not be retrieved from WAD file.", e);
         }
+    }
+
+    /**
+     * Finds a list of maps, defined in the WAD file.
+     * @return List<String>
+     */
+    private List<String> findMaps() {
+        List<String> mapIds = new ArrayList<>();
+
+        // Try to find maps, defined by the different WAD file formats.
+        // First, we start with the original DOOM/Heretic/Hexen format.
+        mapIds = findMapsDoomFormat();
+
+        // TODO: Find maps in UDMF format.
+
+        return mapIds;
+    }
+
+    /**
+     * Finds a list of maps, in a WAD file in original DOOM/Heretic/Hexen format.
+     * @return List<String>
+     */
+    private List<String> findMapsDoomFormat() {
+        List<String> mapIds = new ArrayList<>();
+
+        boolean isMap;
+        for (int i = 0; i <= this.numLumps - WADLump.ORG_MAP_LUMPS.size(); i++) {
+            // We iterate through the found lumps and check, whether
+            // the following lumps have the names, as defined in ORG_MAP_LUMPS
+            // and do they have in the defined order.
+            String tmpMap = this.lumpNames.get(i);
+            isMap = false;
+            for (int j = 0; j < WADLump.ORG_MAP_LUMPS.size(); j++) {
+                isMap = this.lumpNames.get(i + j + 1).equals(WADLump.ORG_MAP_LUMPS.get(j));
+                if (!isMap) {
+                    break;
+                }
+            }
+            if (isMap) {
+                // The current lump is followed by "THINGS", "LINEDEFS", etc.
+                // We found a map!
+                mapIds.add(tmpMap);
+            }
+        }
+
+        return mapIds;
     }
 
 }

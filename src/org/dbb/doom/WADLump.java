@@ -2,6 +2,8 @@ package org.dbb.doom;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * WAD's lump definition.
@@ -14,6 +16,25 @@ public class WADLump {
      * Gets the size of the lump's header in bytes.
      */
     public static int SIZE_OF = 16;             // (2x 4 bytes + 8 bytes)
+
+    /**
+     * Predefined lump names, needed to identify a map in
+     * original DOOM/Heretic/Hexen format.
+     */
+    public static final List<String> ORG_MAP_LUMPS;
+    static {
+        ORG_MAP_LUMPS = new ArrayList<>();
+        ORG_MAP_LUMPS.add("THINGS");
+        ORG_MAP_LUMPS.add("LINEDEFS");
+        ORG_MAP_LUMPS.add("SIDEDEFS");
+        ORG_MAP_LUMPS.add("VERTEXES");
+        ORG_MAP_LUMPS.add("SEGS");
+        ORG_MAP_LUMPS.add("SSECTORS");
+        ORG_MAP_LUMPS.add("NODES");
+        ORG_MAP_LUMPS.add("SECTORS");
+        ORG_MAP_LUMPS.add("REJECT");
+        ORG_MAP_LUMPS.add("BLOCKMAP");
+    }
 
     /**
      * Lump's position in the WAD file.
