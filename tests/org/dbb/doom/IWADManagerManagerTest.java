@@ -55,7 +55,16 @@ public class IWADManagerManagerTest {
      */
     @Test
     public void testInstancingExistingFile() throws Exception {
-        new IWADManager("assets/IWAD/DOOM2.WAD");
+        new IWADManager("assets/IWAD/DOOM2.WAD").destroy();
+    }
+
+    /**
+     * Tests creating an IWADManager instance with a valid PWAD file.
+     * @throws Exception
+     */
+    @Test
+    public void testInstancingExistingPWADFile() throws Exception {
+        new IWADManager("assets/wad/e1a3.wad").destroy();
     }
 
     /**
@@ -66,6 +75,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoDoom2Created() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/DOOM2.WAD");
         assertTrue(iwm.getIWADInfo() instanceof Doom2IWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -76,6 +86,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoDoom2BfgCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/DOOM2BFG.WAD");
         assertTrue(iwm.getIWADInfo() instanceof Doom2BfgIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -86,6 +97,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoDoomPlutoniaCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/PLUTONIA.WAD");
         assertTrue(iwm.getIWADInfo() instanceof PlutoniaIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -96,6 +108,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoDoomTNTCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/TNT.WAD");
         assertTrue(iwm.getIWADInfo() instanceof TNTIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -106,6 +119,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoDoomSharewareCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/DOOM1.WAD");
         assertTrue(iwm.getIWADInfo() instanceof DoomSharewareIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -116,6 +130,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoUltimateDoomCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/DOOM.WAD");
         assertTrue(iwm.getIWADInfo() instanceof UltimateDoomIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -126,6 +141,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoFreedoom1Created() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/freedoom1.wad");
         assertTrue(iwm.getIWADInfo() instanceof Freedoom1IWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -136,6 +152,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoFreedoom2Created() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/freedoom2.wad");
         assertTrue(iwm.getIWADInfo() instanceof Freedoom2IWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -146,6 +163,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoHereticExtendedCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/HERETIC.WAD");
         assertTrue(iwm.getIWADInfo() instanceof HereticExtendedIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -156,6 +174,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoBlasphemerCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/BLASPHEM.WAD");
         assertTrue(iwm.getIWADInfo() instanceof BlasphemerIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -166,6 +185,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoHexenDemoCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/HEXEN_SW.WAD");
         assertTrue(iwm.getIWADInfo() instanceof HexenSharewareIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -176,6 +196,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoHexenDDCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/HEXDD.WAD");
         assertTrue(iwm.getIWADInfo() instanceof HexenDDIWADInfo);
+        iwm.destroy();
     }
 
     /**
@@ -186,5 +207,6 @@ public class IWADManagerManagerTest {
     public void testIWADInfoHexenCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/HEXEN.WAD");
         assertTrue(iwm.getIWADInfo() instanceof HexenIWADInfo);
+        iwm.destroy();
     }
 }

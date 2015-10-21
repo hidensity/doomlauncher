@@ -5,7 +5,7 @@ package org.dbb.doom.exceptions;
  *
  * Created by dennis on 21.10.15.
  */
-public class InvalidWADException extends Exception {
+public class InvalidWADException extends RuntimeException {
 
     /**
      * Creates a new InvalidWADException instance.

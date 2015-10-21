@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 public class ZipManagerTest {
 
     /**
-     * Tests creating an ZipManager instance with a null value as file name.
+     * Tests creating a ZipManager instance with a null value as file name.
      * @throws Exception
      */
     @Test(expected = IllegalArgumentException.class)
@@ -23,7 +23,7 @@ public class ZipManagerTest {
     }
 
     /**
-     * Tests creating an ZipManager instance with a non existing file.
+     * Tests creating a ZipManager instance with a non existing file.
      * @throws Exception
      */
     @Test(expected = IOException.class)
@@ -32,12 +32,21 @@ public class ZipManagerTest {
     }
 
     /**
-     * Tests creating an ZipManager instance with a directory given.
+     * Tests creating a ZipManager instance with a directory given.
      * @throws Exception
      */
     @Test(expected = IOException.class)
     public void testInstancingWithDirectory() throws Exception {
         new IWADManager("assets/pk3/");
+    }
+
+    /**
+     * Tests creating a ZipManager instance with a valid PK3 file.
+     * @throws Exception
+     */
+    @Test
+    public void testInstancingExistingFile() throws Exception {
+        new ZipManager("assets/pk3/square1.pk3").destroy();
     }
 
 }

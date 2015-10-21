@@ -2,7 +2,6 @@ package org.dbb.doom;
 
 import org.dbb.doom.exceptions.InvalidWADException;
 import org.dbb.utils.Helpers;
-import org.omg.CORBA.DynAnyPackage.Invalid;
 
 import java.io.File;
 import java.io.IOException;
@@ -78,6 +77,11 @@ public class WADManager {
     protected List<String> lumpNames;
 
     /**
+     * Byte array with file data.
+     */
+    protected byte[] fileData;
+
+    /**
      * Creates a new WADManager object.
      * @param filename Name of the WADManager file to use.
      * @throws InvalidWADException if an invalid WAD file has been specified.
@@ -100,6 +104,35 @@ public class WADManager {
         // Open the file.
         openWAD();
 
+        // Process the WAD file.
+        processWAD();
+    }
+
+    /**
+     * Creates a new WADManager instance, using a read WAD file.
+     * @param filename String containing internal file name.
+     * @param fileData byte array, containing WAD file data.
+     * @throws InvalidWADException if an invalid WAD file has been specified.
+     * @throws IOException if file could not be read or is a directory.
+     */
+    public WADManager(String filename, byte[] fileData) throws Exception {
+        this.filename = filename;
+        this.fileData = fileData;
+        this.fileSize = fileData.length;
+
+        processWAD();
+    }
+
+    /**
+     * Processes the WAD file.
+     */
+    private void processWAD() throws Exception {
+        // Check file length.
+        if (this.fileSize < WADHeader.SIZE_OF) {
+            throw new InvalidWADException("Invalid WAD specified. " +
+                    "File does not even contain header information (" + this.filename + ").");
+        }
+
         // Read WAD files header.
         this.header = readWADHeader();
 
@@ -116,6 +149,30 @@ public class WADManager {
     }
 
     /**
+     * Destroys the WADManager instance.
+     */
+    public void destroy() {
+        try {
+            closeWAD();
+        } catch (Exception e) {
+            // Intentionally left empty.
+        } finally {
+            this.filename = null;
+            this.file = null;
+            this.wad = null;
+            this.fileSize = 0;
+            this.fc = null;
+            this.header = null;
+            this.numLumps = 0;
+            this.infoTableOffset = 0;
+            this.bigEndian = false;
+            this.lumps = null;
+            this.lumpNames = null;
+            this.fileData = null;
+        }
+    }
+
+    /**
      * Gets the WAD's file name.
      * @return String
      */
@@ -129,13 +186,9 @@ public class WADManager {
      * @throws IOException if file could not be read.
      */
     private void openWAD() throws Exception {
-        this.fileSize = this.file.length();
-        if (this.fileSize < WADHeader.SIZE_OF) {
-            throw new InvalidWADException("Invalid WAD specified. " +
-                    "File does not even contain header information.");
-        }
-
         try {
+            this.fileSize = this.file.length();
+
             this.wad = new RandomAccessFile(this.file, "r");
             this.fc = this.wad.getChannel();
         } catch (Exception e) {
@@ -192,8 +245,12 @@ public class WADManager {
     private WADHeader readWADHeader() throws IOException {
         // Read the first 12 bytes from the WAD file.
         ByteBuffer buffer = ByteBuffer.allocate(WADHeader.SIZE_OF);
-        this.fc.position(0);
-        this.fc.read(buffer);
+        if (this.fileData == null) {
+            this.fc.position(0);
+            this.fc.read(buffer);
+        } else {
+            buffer.put(Arrays.copyOfRange(this.fileData, 0, WADHeader.SIZE_OF));
+        }
 
         byte[] bytes = buffer.array();
         byte[] magic = Arrays.copyOfRange(bytes, 0, 4);
@@ -216,8 +273,13 @@ public class WADManager {
         // Read the lumps from WAD file to buffer.
         ByteBuffer buffer = ByteBuffer.allocate(this.numLumps * WADLump.SIZE_OF);
         try {
-            this.fc.position(this.infoTableOffset);
-            this.fc.read(buffer);
+            if (this.fileData == null) {
+                this.fc.position(this.infoTableOffset);
+                this.fc.read(buffer);
+            } else {
+                buffer.put(Arrays.copyOfRange(this.fileData,
+                        this.infoTableOffset, this.infoTableOffset + buffer.limit()));
+            }
             byte[] bytes = buffer.array();
 
             // Let's fill the lump list.
