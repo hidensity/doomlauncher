@@ -30,6 +30,22 @@ public class ZipManager {
     public final static String NS_MAPS = "maps/";
 
     /**
+     * Different namespaces, that can definitely be ignored.
+     */
+    public final static String NS_ACS = "acs/";                 // ACS libraries.
+    public final static String NS_COLORMAPS = "colormaps/";     // BOOM colormaps.
+    public final static String NS_FLATS = "flats/";             // Flats.
+    public final static String NS_GRAPHICS = "graphics/";       // Special graphics.
+    public final static String NS_HIRES = "hires/";             // High-resolution textures.
+    public final static String NS_MUSIC = "music/";             // All data, used as music.
+    public final static String NS_PATCHES = "patches/";         // Patches.
+    public final static String NS_SOUNDS = "sounds/";           // Sound files, referenced in SNDINFO.
+    public final static String NS_SPRITES = "sprites/";         // Sprites.
+    public final static String NS_TEXTURES = "textures/";       // Textures.
+    public final static String NS_VOICES = "voices/";           // Strife dialog sounds.
+    public final static String NS_VOXELS = "voxels/";           // Voxel objects.
+
+    /**
      * ZIP file name.
      */
     private String filename;
@@ -126,15 +142,37 @@ public class ZipManager {
             ZipInputStream zis = new ZipInputStream(new FileInputStream(this.filename));
             ZipEntry ze = zis.getNextEntry();
             while (ze != null) {
+                // Check if file is in global namespace (ZIP file's root, or
+                // in map namespace (NS_MAPS), or another namespace, that
+                // is user-chosen. Ignore sprites, textures, sounds, etc.
+                String name = ze.getName();
+                if (name.toLowerCase().startsWith(NS_ACS) ||
+                        name.toLowerCase().startsWith(NS_COLORMAPS) ||
+                        name.toLowerCase().startsWith(NS_FLATS) ||
+                        name.toLowerCase().startsWith(NS_GRAPHICS) ||
+                        name.toLowerCase().startsWith(NS_HIRES) ||
+                        name.toLowerCase().startsWith(NS_MUSIC) ||
+                        name.toLowerCase().startsWith(NS_PATCHES) ||
+                        name.toLowerCase().startsWith(NS_SOUNDS) ||
+                        name.toLowerCase().startsWith(NS_SPRITES) ||
+                        name.toLowerCase().startsWith(NS_TEXTURES) ||
+                        name.toLowerCase().startsWith(NS_VOICES) ||
+                        name.toLowerCase().startsWith(NS_VOXELS)) {
+                    // Skip this ZIP entry.
+                    ze = zis.getNextEntry();
+                    continue;
+                }
+                // Found ZIP entry is a map, or a root entry, or comes from a
+                // user defined namespace.
                 // Extract the file to memory.
                 byte[] data = new byte[65536];
-                ByteBuffer buffer = ByteBuffer.allocate((int)ze.getSize());
+                ByteBuffer buffer = ByteBuffer.allocate((int) ze.getSize());
                 int len;
                 int written = 0;
                 while ((len = zis.read(data)) > 0) {
                     buffer.put(data, written * data.length, len);
                 }
-                this.fileEntries.put(ze.getName(), buffer.array());
+                this.fileEntries.put(name, buffer.array());
                 ze = zis.getNextEntry();
             }
             zis.closeEntry();
@@ -150,7 +188,7 @@ public class ZipManager {
     private void extractMaps() throws Exception {
         this.wadFiles = new ArrayList<>();
         for (String key : this.fileEntries.keySet()) {
-            if (key.startsWith(ZipManager.NS_MAPS) &&
+            if (key.toLowerCase().startsWith(ZipManager.NS_MAPS) &&
                 key.length() > ZipManager.NS_MAPS.length()) {
                 this.wadFiles.add(new WADManager(key, this.fileEntries.get(key)));
             }
