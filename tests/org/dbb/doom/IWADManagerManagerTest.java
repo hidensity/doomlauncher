@@ -1,5 +1,6 @@
 package org.dbb.doom;
 
+import org.dbb.doom.exceptions.InvalidWADException;
 import org.dbb.doom.wadinfo.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -44,7 +45,7 @@ public class IWADManagerManagerTest {
      * Tests creating an IWADManager instance with a file, not even containing a header.
      * @throws Exception
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = InvalidWADException.class)
     public void testInstancingTooShortFile() throws Exception {
         new IWADManager("assets/testdata/file_too_short.txt");
     }
@@ -56,15 +57,6 @@ public class IWADManagerManagerTest {
     @Test
     public void testInstancingExistingFile() throws Exception {
         new IWADManager("assets/IWAD/DOOM2.WAD").destroy();
-    }
-
-    /**
-     * Tests creating an IWADManager instance with a valid PWAD file.
-     * @throws Exception
-     */
-    @Test
-    public void testInstancingExistingPWADFile() throws Exception {
-        new IWADManager("assets/wad/e1a3.wad").destroy();
     }
 
     /**
@@ -174,6 +166,7 @@ public class IWADManagerManagerTest {
     public void testIWADInfoBlasphemerCreated() throws Exception {
         IWADManager iwm = new IWADManager("assets/IWAD/BLASPHEM.WAD");
         assertTrue(iwm.getIWADInfo() instanceof BlasphemerIWADInfo);
+        assertTrue(iwm.getMapIds().size() == 45);   // Blasphemer has E1M1..E5M9 => 45 maps
         iwm.destroy();
     }
 
@@ -208,5 +201,14 @@ public class IWADManagerManagerTest {
         IWADManager iwm = new IWADManager("assets/IWAD/HEXEN.WAD");
         assertTrue(iwm.getIWADInfo() instanceof HexenIWADInfo);
         iwm.destroy();
+    }
+
+    /**
+     * Tests creating an WADManager instance with a valid PWAD file.
+     * @throws Exception
+     */
+    @Test
+    public void testInstancingExistingPWADFile() throws Exception {
+        new WADManager("assets/wad/e1a3.wad").destroy();
     }
 }

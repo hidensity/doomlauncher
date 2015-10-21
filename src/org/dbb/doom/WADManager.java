@@ -192,6 +192,14 @@ public class WADManager {
     }
 
     /**
+     * Gets a list of map IDs, defined in this WAD file.
+     * @return List<String>
+     */
+    public List<String> getMapIds() {
+        return this.mapIds;
+    }
+
+    /**
      * Opens the WADManager file for reading.
      * @throws InvalidWADException if file length is < 12.
      * @throws IOException if file could not be read.
@@ -323,13 +331,16 @@ public class WADManager {
      * @return List<String>
      */
     private List<String> findMaps() {
-        List<String> mapIds = new ArrayList<>();
+        List<String> mapIds;
 
         // Try to find maps, defined by the different WAD file formats.
         // First, we start with the original DOOM/Heretic/Hexen format.
         mapIds = findMapsDoomFormat();
 
-        // TODO: Find maps in UDMF format.
+        // No maps found? Let us try the UDMF format.
+        if (0 >= mapIds.size()) {
+            mapIds = findMapsUDMFFormat();
+        }
 
         return mapIds;
     }
@@ -359,6 +370,34 @@ public class WADManager {
                 // We found a map!
                 mapIds.add(tmpMap);
             }
+        }
+
+        return mapIds;
+    }
+
+    /**
+     * Finds a list of maps, in a WAD file, defined by UDMF format.
+     * @return List<String>
+     */
+    private List<String> findMapsUDMFFormat() {
+        List<String> mapIds = new ArrayList<>();
+
+        boolean isMap;
+        int currentLump = 0;
+        while (currentLump < this.numLumps - 2) {
+            String tmpMap = this.lumpNames.get(currentLump);
+            // Is successor of current lump a "TEXTMAP"?
+            if (this.lumpNames.get(currentLump + 1).equals(WADLump.UDMF_MAP_START)) {
+                // TODO: Find a clever way to retrieve UDMF maps.
+                // We have to find everything between:
+                // [something]
+                // TEXTMAP
+                // ...
+                // ENDMAP
+                // While the [something] is our map's Id. We can dispose any information, we else gathered.
+            }
+
+            currentLump++;
         }
 
         return mapIds;

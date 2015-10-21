@@ -37,6 +37,12 @@ public class WADLump {
     }
 
     /**
+     * Predefined lump names for UDMF maps.
+     */
+    public static final String UDMF_MAP_START = "TEXTMAP";
+    public static final String UDMF_MAP_END = "ENDMAP";
+
+    /**
      * Lump's position in the WAD file.
      */
     private long filePos;
