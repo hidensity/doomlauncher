@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Strife: Quest for the Sigil.
@@ -14,9 +14,9 @@ public class StrifeMapInfo extends MapInfo {
     /**
      * Strife: Quest for the Sigil map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP01", "AREA 1: Sanctuary");
         mapNames.put("MAP02", "AREA 2: Town");
         mapNames.put("MAP03", "AREA 3: Front Base");
@@ -57,6 +57,6 @@ public class StrifeMapInfo extends MapInfo {
      * Creates MapInfo object for Strife: Quest for the Sigil.
      */
     public StrifeMapInfo() {
-        super(StrifeMapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }

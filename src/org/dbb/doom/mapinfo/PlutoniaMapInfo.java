@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Final DOOM: The Plutonia Experiment.
@@ -14,9 +14,9 @@ public class PlutoniaMapInfo extends MapInfo {
     /**
      * Final DOOM: The Plutonia Experiment map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP01", "Level 1: Congo");
         mapNames.put("MAP02", "Level 2: Well of Souls");
         mapNames.put("MAP03", "Level 3: Aztec");
@@ -55,6 +55,6 @@ public class PlutoniaMapInfo extends MapInfo {
      * Creates MapInfo object for Final DOOM: The Plutonia Experiment.
      */
     public PlutoniaMapInfo() {
-        super(PlutoniaMapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }

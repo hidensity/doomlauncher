@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Hacx: Twitch'n Kill.
@@ -14,9 +14,9 @@ public class HacxMapInfo extends MapInfo {
     /**
      * Hacx: Twitch'n Kill map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP01", "Level 1: GenEmp Corp.");
         mapNames.put("MAP02", "Level 2: Tunnel Town");
         mapNames.put("MAP03", "Level 3: Lava Annex");
@@ -44,6 +44,6 @@ public class HacxMapInfo extends MapInfo {
      * Creates MapInfo object for Hacx: Twitch'n Kill.
      */
     public HacxMapInfo() {
-        super(HacxMapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }

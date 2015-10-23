@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for DOOM.
@@ -14,9 +14,9 @@ public class DoomMapInfo extends MapInfo {
     /**
      * DOOM map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("E1M1", "E1M1: Hangar");
         mapNames.put("E1M2", "E1M2: Nuclear Plant");
         mapNames.put("E1M3", "E1M3: Toxic Refinery");
@@ -59,6 +59,6 @@ public class DoomMapInfo extends MapInfo {
      * Creates MapInfo object for DOOM.
      */
     public DoomMapInfo() {
-        super(DoomMapInfo.mapNames);
+        fromNameMap(DoomMapInfo.mapNames);
     }
 }

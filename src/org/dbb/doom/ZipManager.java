@@ -5,9 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -89,7 +89,7 @@ public class ZipManager {
             throw new IOException("The specified container file was not found or is a directory (" + filename + ").");
         }
 
-        this.fileEntries = new HashMap<>();
+        this.fileEntries = new TreeMap<>();
 
         openZip();
 

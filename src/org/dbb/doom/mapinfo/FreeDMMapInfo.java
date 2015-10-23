@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for FreeDM.
@@ -14,9 +14,9 @@ public class FreeDMMapInfo extends MapInfo {
     /**
      * FreeDM map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP01", "Map 1: [no name]");
         mapNames.put("MAP02", "Map 2: [no name]");
         mapNames.put("MAP03", "Map 3: [no name]");
@@ -55,6 +55,6 @@ public class FreeDMMapInfo extends MapInfo {
      * Creates MapInfo object for FreeDM.
      */
     public FreeDMMapInfo() {
-        super(FreeDMMapInfo.mapNames);
+        fromNameMap(FreeDMMapInfo.mapNames);
     }
 }

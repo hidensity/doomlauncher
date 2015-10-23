@@ -35,7 +35,7 @@ public class HereticSharewareIWADInfo extends IWADInfo {
         setName("Heretic Shareware");
         setGameType(GameType.HERETIC);
         setCompatibility(GameCompatibility.GI_SHAREWARE);
-        setMapInfo(new MapInfo(new HereticMapInfo().getMapNames("E1M\\d")));
+        setMapInfo(new MapInfo(new HereticMapInfo().getMapEntries("E1M\\d")));
         setMustContain(HereticSharewareIWADInfo.mustContain);
     }
 }

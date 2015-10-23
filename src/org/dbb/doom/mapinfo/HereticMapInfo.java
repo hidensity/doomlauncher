@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Heretic.
@@ -14,9 +14,9 @@ public class HereticMapInfo extends MapInfo {
     /**
      * Heretic map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("E1M1", "E1M1: The Docks");
         mapNames.put("E1M2", "E1M2: The Dungeon");
         mapNames.put("E1M3", "E1M3: The Gatehouse");
@@ -71,6 +71,6 @@ public class HereticMapInfo extends MapInfo {
      * Creates MapInfo object for Heretic.
      */
     public HereticMapInfo() {
-        super(HereticMapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }

@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Harmony.
@@ -14,9 +14,9 @@ public class HarmonyMapInfo extends MapInfo {
     /**
      * Harmony map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP01", "Level 1: Abduction");
         mapNames.put("MAP02", "Level 2: Harm's Way");
         mapNames.put("MAP03", "Level 3: Operation Rescue");
@@ -34,6 +34,6 @@ public class HarmonyMapInfo extends MapInfo {
      * Creates MapInfo object for Harmony.
      */
     public HarmonyMapInfo() {
-        super(HarmonyMapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }

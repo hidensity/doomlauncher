@@ -1,13 +1,11 @@
 package org.dbb.doom.wadinfo;
 
-import org.dbb.doom.GameCompatibility;
-import org.dbb.doom.GameType;
-import org.dbb.doom.IWADInfo;
-import org.dbb.doom.MapInfo;
+import org.dbb.doom.*;
 import org.dbb.doom.mapinfo.StrifeMapInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * IWAD information for Strife: Quest for the Sigil.
@@ -35,7 +33,7 @@ public class StrifeIWADInfo extends IWADInfo {
         setName("Strife: Quest for the Sigil");
         setGameType(GameType.STRIFE);
         setCompatibility(GameCompatibility.GI_NONE);
-        setMapInfo(new MapInfo(new StrifeMapInfo().getMapNames("MAP(([0-2][\\d])|(3[0-1]))")));
+        setMapInfo(new MapInfo(new StrifeMapInfo().getMapEntries("MAP(([0-2][\\d])|(3[0-1]))")));
         setMustContain(StrifeIWADInfo.mustContain);
     }
 }

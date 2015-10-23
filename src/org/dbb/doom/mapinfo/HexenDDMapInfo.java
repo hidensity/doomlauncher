@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Hexen DD.
@@ -14,9 +14,9 @@ public class HexenDDMapInfo extends MapInfo {
     /**
      * Hexen DD map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP41", "Level 1.1: Ruined Village");
         mapNames.put("MAP42", "Level 1.2: Blight");
         mapNames.put("MAP43", "Level 1.3: Sump");
@@ -49,6 +49,6 @@ public class HexenDDMapInfo extends MapInfo {
      * Creates MapInfo object for Hexen DD.
      */
     public HexenDDMapInfo() {
-        super(HexenDDMapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }

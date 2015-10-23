@@ -34,7 +34,7 @@ public class FreedoomDemoIWADInfo extends IWADInfo {
         setName("Freedom Demo");
         setGameType(GameType.DOOM);
         setCompatibility(GameCompatibility.GI_NONE);
-        setMapInfo(new MapInfo(new Freedoom1MapInfo().getMapNames("E1M\\d")));
+        setMapInfo(new MapInfo(new Freedoom1MapInfo().getMapEntries("E1M\\d")));
         setMustContain(FreedoomDemoIWADInfo.mustContain);
     }
 }

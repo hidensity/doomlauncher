@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Chex(R) Quest.
@@ -14,9 +14,9 @@ public class ChexMapInfo extends MapInfo {
     /**
      * Chex(R) Quest map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("E1M1", "E1M1: Landing Zone");
         mapNames.put("E1M2", "E1M2: Storage Facility");
         mapNames.put("E1M3", "E1M3: Experimental Lab");
@@ -59,6 +59,6 @@ public class ChexMapInfo extends MapInfo {
      * Creates MapInfo object for Chex(R) Quest.
      */
     public ChexMapInfo() {
-        super(ChexMapInfo.mapNames);
+        super(MapInfo.fromNameMap(mapNames));
     }
 }

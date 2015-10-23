@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Freedoom Phase 2.
@@ -14,9 +14,9 @@ public class Freedoom2MapInfo extends MapInfo {
     /**
      * Freedoom Phase 2 map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP01", "Map 1: [no name]");
         mapNames.put("MAP02", "Map 2: [no name]");
         mapNames.put("MAP03", "Map 3: [no name]");
@@ -55,6 +55,6 @@ public class Freedoom2MapInfo extends MapInfo {
      * Creates MapInfo object for Freedoom Phase 2.
      */
     public Freedoom2MapInfo() {
-        super(Freedoom2MapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }

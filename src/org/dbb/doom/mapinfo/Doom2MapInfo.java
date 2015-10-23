@@ -55,6 +55,6 @@ public class Doom2MapInfo extends MapInfo {
      * Creates MapInfo object for DOOM2.
      */
     public Doom2MapInfo() {
-        super(Doom2MapInfo.mapNames);
+        super(MapInfo.fromNameMap(mapNames));
     }
 }

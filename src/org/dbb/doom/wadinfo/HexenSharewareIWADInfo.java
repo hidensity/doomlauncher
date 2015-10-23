@@ -35,7 +35,7 @@ public class HexenSharewareIWADInfo extends IWADInfo {
         setName("Hexen: Demo Version");
         setGameType(GameType.HEXEN);
         setCompatibility(GameCompatibility.GI_SHAREWARE);
-        setMapInfo(new MapInfo(new HexenMapInfo().getMapNames("MAP0[1-4]")));
+        setMapInfo(new MapInfo(new HexenMapInfo().getMapEntries("MAP0[1-4]")));
         setMustContain(HexenSharewareIWADInfo.mustContain);
     }
 }

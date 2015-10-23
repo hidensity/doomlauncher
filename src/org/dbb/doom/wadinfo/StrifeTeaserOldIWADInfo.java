@@ -34,7 +34,7 @@ public class StrifeTeaserOldIWADInfo extends IWADInfo {
         setName("Strife: Teaser (Old Version)");
         setGameType(GameType.STRIFE);
         setCompatibility(GameCompatibility.GI_SHAREWARE);
-        setMapInfo(new MapInfo(new StrifeMapInfo().getMapNames("MAP3[2-4]")));
+        setMapInfo(new MapInfo(new StrifeMapInfo().getMapEntries("MAP3[2-4]")));
         setMustContain(StrifeTeaserOldIWADInfo.mustContain);
     }
 }

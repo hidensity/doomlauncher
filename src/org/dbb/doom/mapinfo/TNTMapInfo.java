@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Final DOOM: TNT - Evilution.
@@ -14,9 +14,9 @@ public class TNTMapInfo extends MapInfo {
     /**
      * Final DOOM: TNT - Evilution map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP01", "Level 1: System Control");
         mapNames.put("MAP02", "Level 2: Human BBQ");
         mapNames.put("MAP03", "Level 3: Power Control");
@@ -55,6 +55,6 @@ public class TNTMapInfo extends MapInfo {
      * Creates MapInfo object for Final DOOM: TNT - Evilution.
      */
     public TNTMapInfo() {
-        super(TNTMapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }

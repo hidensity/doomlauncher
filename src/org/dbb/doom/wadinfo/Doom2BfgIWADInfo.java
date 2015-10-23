@@ -1,13 +1,10 @@
 package org.dbb.doom.wadinfo;
 
-import org.dbb.doom.GameCompatibility;
-import org.dbb.doom.GameType;
-import org.dbb.doom.IWADInfo;
-import org.dbb.doom.MapInfo;
+import org.dbb.doom.*;
 import org.dbb.doom.mapinfo.Doom2MapInfo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.List;
 
 /**
@@ -41,10 +38,10 @@ public class Doom2BfgIWADInfo extends IWADInfo {
         setCompatibility(GameCompatibility.GI_COMPATSHORTTEX);
 
         // Replace and add map names, different from DOOM2.
-        HashMap<String, String> mapNames = new HashMap<>(new Doom2MapInfo().getMapNames());
-        mapNames.replace("MAP31", "Level 31: IDKFA");       // Wolfenstein 3D censorship.
-        mapNames.replace("MAP32", "Level 32: Keen");
-        mapNames.put("MAP33", "Level 33: Betray");
+        TreeMap<String, MapInfoEntry> mapNames = new TreeMap<>(new Doom2MapInfo().getMapEntries());
+        mapNames.replace("MAP31", new MapInfoEntry("MAP31", "Level 31: IDKFA", false));     // Wolfenstein 3D censorship.
+        mapNames.replace("MAP32", new MapInfoEntry("MAP32", "Level 32: Keen", false));
+        mapNames.put("MAP33", new MapInfoEntry("MAP33", "Level 33: Betray", false));
 
         setMapInfo(new MapInfo(mapNames));
         setMustContain(Doom2BfgIWADInfo.mustContain);

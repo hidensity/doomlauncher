@@ -324,7 +324,7 @@ public class WADManager {
             byte[] bytes = buffer.array();
 
             // Let's fill the lump list.
-            Map<String, WADLump> lumps = new HashMap<>();
+            Map<String, WADLump> lumps = new TreeMap<>();
             this.lumpNames = new ArrayList<>();
 
             for (int i = 0; i < this.numLumps; i++) {

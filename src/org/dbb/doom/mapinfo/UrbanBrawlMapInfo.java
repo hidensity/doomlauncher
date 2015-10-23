@@ -2,7 +2,7 @@ package org.dbb.doom.mapinfo;
 
 import org.dbb.doom.MapInfo;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 /**
  * MapInfo for Action Doom 2: Urban Brawl.
@@ -14,9 +14,9 @@ public class UrbanBrawlMapInfo extends MapInfo {
     /**
      * Action Doom 2: Urban Brawl map names.
      */
-    private static final HashMap<String, String> mapNames;
+    private static final TreeMap<String, String> mapNames;
     static {
-        mapNames = new HashMap<>();
+        mapNames = new TreeMap<>();
         mapNames.put("MAP01", "Level 1: Streets of Rage: It's time for Action");
         mapNames.put("MAP02", "Level 2: Action Bridge: The Manhattan Project");
         mapNames.put("MAP03", "Level 3: Segue: Say, That's a Nice Car");
@@ -33,6 +33,6 @@ public class UrbanBrawlMapInfo extends MapInfo {
      * Creates MapInfo object for Action Doom 2: Urban Brawl.
      */
     public UrbanBrawlMapInfo() {
-        super(UrbanBrawlMapInfo.mapNames);
+        super(fromNameMap(mapNames));
     }
 }
