@@ -11,9 +11,9 @@ import java.util.List;
 public class IWADInfo {
 
     /**
-     * Gets the IWADINFO lump's name.
+     * Gets the LUMP_IWADINFO lump's name.
      */
-    public static String IWADINFO = "IWADINFO";
+    public static String LUMP_IWADINFO = "LUMP_IWADINFO";
 
     /**
      * IWAD's name.
@@ -66,7 +66,7 @@ public class IWADInfo {
      * @param lump WADLump containing IWAD information.
      * @param fc FileChannel, used for reading.
      * @return IWADInfo
-     * @throws IllegalArgumentException if lump does not contain valid IWADINFO.
+     * @throws IllegalArgumentException if lump does not contain valid LUMP_IWADINFO.
      */
     public static IWADInfo fromLump(WADLump lump, FileChannel fc) throws Exception {
         try {
@@ -74,7 +74,7 @@ public class IWADInfo {
             // TODO: lumpData needs to be parsed.
             return new IWADInfo();
         } catch (Exception e) {
-            throw new IllegalArgumentException("Could not read IWADINFO lump.", e);
+            throw new IllegalArgumentException("Could not read LUMP_IWADINFO lump.", e);
         }
 
     }

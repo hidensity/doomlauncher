@@ -1,5 +1,7 @@
 package org.dbb.doom;
 
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +11,11 @@ import java.util.Map;
  * Created by dennis on 19.10.15.
  */
 public class MapInfo {
+
+    /**
+     * MAPINFO lump name.
+     */
+    public static final String LUMP_MAPINFO = "MAPINFO";
 
     /**
      * Map containing the single map's name.
@@ -26,11 +33,29 @@ public class MapInfo {
     /**
      * Creates a new MapInfo instance by parsing a lump containing map information data.
      * @param lump WADLump containing map information.
+     * @param fc FileChannel object, used to read data.
      * @return MapInfo object.
      * @throws IllegalArgumentException if lump does not contain valid MAPINFO data.
      */
-    public static MapInfo fromLump(WADLump lump) throws Exception {
+    public static MapInfo fromLump(WADLump lump, FileChannel fc) throws Exception {
         HashMap<String, String> mapNames = new HashMap<>();
+
+        // Data to parse.
+        byte[] lumpData;
+
+        // Try to retrieve the lump's data and split into single lines.
+        lumpData = lump.getLumpData(fc);
+        String[] mapinfo = new String(lumpData).split("\\r?\\n");
+
+        // The following RegEx pattern will find valid
+        // map definitions within a "MAPINFO" lump.
+        // ^\s*map\s+([^\s]*)\s+(lookup\s+|name\s+)?"(.*)"
+        // map E1M1 lookup "HUSTR_E1M1"     <- match
+        // map E1M1 name "$HUSTR_E1M1"      <- match
+        // map MAP01 "entryway"             <- match
+        //    map MAP07 "dead simple"       <- match
+        // ;map E1M2 lookup "HUSTR_E1M2"    <- no match
+        // #map MAP01 "entryway"            <- no match
 
         return new MapInfo(mapNames);
     }

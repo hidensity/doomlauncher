@@ -8,9 +8,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * WAD Manager
@@ -69,7 +67,7 @@ public class WADManager {
     /**
      * List of lumps in the WAD.
      */
-    protected List<WADLump> lumps;
+    protected Map<String, WADLump> lumps;
 
     /**
      * List with found lump names.
@@ -87,6 +85,11 @@ public class WADManager {
      * Not to mix up with the map's name, like e.g. "Hangar", etc.
      */
     protected List<String> mapIds;
+
+    /**
+     * The WAD file's map info.
+     */
+    private MapInfo mapInfo;
 
     /**
      * Creates a new WADManager object.
@@ -154,6 +157,9 @@ public class WADManager {
         // Get the lumps from WAD.
         this.lumps = readWADLumps();
 
+        // Read WAD file's "MAPINFO" lump.
+        this.mapInfo = readMapInfo();
+
         // Find maps in the WAD file.
         this.mapIds = findMaps();
     }
@@ -197,6 +203,22 @@ public class WADManager {
      */
     public List<String> getMapIds() {
         return this.mapIds;
+    }
+
+    /**
+     * Sets the WAD file's MapInfo.
+     * @param mapInfo MapInfo object.
+     */
+    public void setMapInfo(MapInfo mapInfo) {
+        this.mapInfo = mapInfo;
+    }
+
+    /**
+     * Gets the WAD file's MapInfo.
+     * @return MapInfo object.
+     */
+    public MapInfo getMapInfo() {
+        return this.mapInfo;
     }
 
     /**
@@ -285,10 +307,10 @@ public class WADManager {
 
     /**
      * Gets a List of lumps from the WAD file.
-     * @return List<WADLump>
+     * @return Map
      * @throws IOException
      */
-    private List<WADLump> readWADLumps() throws IOException {
+    private Map<String, WADLump> readWADLumps() throws IOException {
         // Read the lumps from WAD file to buffer.
         ByteBuffer buffer = ByteBuffer.allocate(this.numLumps * WADLump.SIZE_OF);
         try {
@@ -302,7 +324,7 @@ public class WADManager {
             byte[] bytes = buffer.array();
 
             // Let's fill the lump list.
-            List<WADLump> lumps = new ArrayList<>();
+            Map<String, WADLump> lumps = new HashMap<>();
             this.lumpNames = new ArrayList<>();
 
             for (int i = 0; i < this.numLumps; i++) {
@@ -316,8 +338,8 @@ public class WADManager {
                         this.bigEndian ?
                                 Helpers.byteArrayToBigEndianInt(size) : Helpers.byteArrayToLittleEndianInt(size),
                         new String(name));
-                lumps.add(wl);
-                lumpNames.add(wl.getName());
+                lumps.put(wl.getName(), wl);
+                this.lumpNames.add(wl.getName());
             }
 
             return lumps;
@@ -413,6 +435,21 @@ public class WADManager {
         }
 
         return mapIds;
+    }
+
+    /**
+     * Reads the "MAPINFO" lump.
+     * @return MapInfo object.
+     * @throws Exception if an error occurred.
+     */
+    private MapInfo readMapInfo() throws Exception {
+        if (this.lumpNames.contains(MapInfo.LUMP_MAPINFO)) {
+            if (null != this.fc) {
+                return MapInfo.fromLump(this.lumps.get(MapInfo.LUMP_MAPINFO), this.fc);
+            }
+        }
+
+        return null;
     }
 
 }

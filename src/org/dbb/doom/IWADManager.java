@@ -93,14 +93,12 @@ public class IWADManager extends WADManager {
     private IWADInfo parseIWADInfo() throws Exception {
         IWADInfo iwi = null;
 
-        // Check, whether the IWAD contains an "IWADINFO" lump.
-        for (int i = this.numLumps - 1; i >= 0; i--) {
-            if (this.lumps.get(i).getName().equals(IWADInfo.IWADINFO)) {
-                iwi = IWADInfo.fromLump(this.lumps.get(i), this.fc);
-            }
+        // Check, whether the IWAD contains an "LUMP_IWADINFO" lump.
+        if (this.lumps.containsKey(IWADInfo.LUMP_IWADINFO)) {
+            iwi = IWADInfo.fromLump(this.lumps.get(IWADInfo.LUMP_IWADINFO), this.fc);
         }
 
-        // IWAD file does not contain an IWADINFO lump. Try to find out
+        // IWAD file does not contain an LUMP_IWADINFO lump. Try to find out
         // what IWAD file we are using.
         for (IWADInfo info : PREDEFINED_IWAD) {
             if (null == iwi &&
