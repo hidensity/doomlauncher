@@ -17,15 +17,15 @@ public class UrbanBrawlMapInfo extends MapInfo {
     private static final HashMap<String, String> mapNames;
     static {
         mapNames = new HashMap<>();
-        mapNames.put("MAP01", "Level 01: Streets of Rage: It's time for Action");
-        mapNames.put("MAP02", "Level 02: Action Bridge: The Manhattan Project");
-        mapNames.put("MAP03", "Level 03: Segue: Say, That's a Nice Car");
-        mapNames.put("MAP04", "Level 04: Action Subway: Follow the Bad Dudes");
-        mapNames.put("MAP05", "Level 05: Downtown: Neo Manhattan");
-        mapNames.put("MAP06", "Level 06: Phylex: Rising to the Challenge");
-        mapNames.put("MAP07", "Level 07: Phylex: Top Floor");
-        mapNames.put("MAP08", "Level 08: Backwoods: Over the River and Through the Woods...");
-        mapNames.put("MAP09", "Level 09: Abandoned Places: The Splatterhouse");
+        mapNames.put("MAP01", "Level 1: Streets of Rage: It's time for Action");
+        mapNames.put("MAP02", "Level 2: Action Bridge: The Manhattan Project");
+        mapNames.put("MAP03", "Level 3: Segue: Say, That's a Nice Car");
+        mapNames.put("MAP04", "Level 4: Action Subway: Follow the Bad Dudes");
+        mapNames.put("MAP05", "Level 5: Downtown: Neo Manhattan");
+        mapNames.put("MAP06", "Level 6: Phylex: Rising to the Challenge");
+        mapNames.put("MAP07", "Level 7: Phylex: Top Floor");
+        mapNames.put("MAP08", "Level 8: Backwoods: Over the River and Through the Woods...");
+        mapNames.put("MAP09", "Level 9: Abandoned Places: The Splatterhouse");
         mapNames.put("MAP10", "Level 10: Crisp's Office: Final Fight");
     }
 

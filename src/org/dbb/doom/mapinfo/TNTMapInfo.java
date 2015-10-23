@@ -17,15 +17,15 @@ public class TNTMapInfo extends MapInfo {
     private static final HashMap<String, String> mapNames;
     static {
         mapNames = new HashMap<>();
-        mapNames.put("MAP01", "Level 01: System Control");
-        mapNames.put("MAP02", "Level 02: Human BBQ");
-        mapNames.put("MAP03", "Level 03: Power Control");
-        mapNames.put("MAP04", "Level 04: Wormhole");
-        mapNames.put("MAP05", "Level 05: Hanger");
-        mapNames.put("MAP06", "Level 06: Open Season");
-        mapNames.put("MAP07", "Level 07: Prison");
-        mapNames.put("MAP08", "Level 08: Metal");
-        mapNames.put("MAP09", "Level 09: Stronghold");
+        mapNames.put("MAP01", "Level 1: System Control");
+        mapNames.put("MAP02", "Level 2: Human BBQ");
+        mapNames.put("MAP03", "Level 3: Power Control");
+        mapNames.put("MAP04", "Level 4: Wormhole");
+        mapNames.put("MAP05", "Level 5: Hanger");
+        mapNames.put("MAP06", "Level 6: Open Season");
+        mapNames.put("MAP07", "Level 7: Prison");
+        mapNames.put("MAP08", "Level 8: Metal");
+        mapNames.put("MAP09", "Level 9: Stronghold");
         mapNames.put("MAP10", "Level 10: Redemption");
         mapNames.put("MAP11", "Level 11: Storage Facility");
         mapNames.put("MAP12", "Level 12: Crater");

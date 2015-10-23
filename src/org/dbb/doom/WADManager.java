@@ -382,21 +382,33 @@ public class WADManager {
     private List<String> findMapsUDMFFormat() {
         List<String> mapIds = new ArrayList<>();
 
-        boolean isMap;
+        boolean isMap = false;
         int currentLump = 0;
         while (currentLump < this.numLumps - 2) {
             String tmpMap = this.lumpNames.get(currentLump);
             // Is successor of current lump a "TEXTMAP"?
             if (this.lumpNames.get(currentLump + 1).equals(WADLump.UDMF_MAP_START)) {
-                // TODO: Find a clever way to retrieve UDMF maps.
-                // We have to find everything between:
-                // [something]
-                // TEXTMAP
-                // ...
-                // ENDMAP
-                // While the [something] is our map's Id. We can dispose any information, we else gathered.
+                // We found a map data lump. Let us check, if we also find an
+                // "ENDMAP" lump. If so, we found a map and can continue our
+                // search after the found "ENDMAP" lump.
+                for (int j = currentLump + 1; j < this.numLumps; j++) {
+                    if (this.lumpNames.get(j).equals(WADLump.UDMF_MAP_END)) {
+                        mapIds.add(tmpMap);
+                        currentLump = j;
+                        isMap = true;
+                        break;
+                    }
+                }
+                if (!isMap) {
+                    // When no map has been added, we have the situation that we
+                    // found a "TEXTMAP" lump, but not an "ENDMAP" lump. So we
+                    // can stop searching for further maps, since we will never
+                    // find any more valid lump combinations.
+                    return mapIds;
+                } else {
+                    isMap = false;
+                }
             }
-
             currentLump++;
         }
 

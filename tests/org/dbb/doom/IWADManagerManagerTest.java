@@ -211,4 +211,16 @@ public class IWADManagerManagerTest {
     public void testInstancingExistingPWADFile() throws Exception {
         new WADManager("assets/wad/e1a3.wad").destroy();
     }
+
+    /**
+     * Tests creating an WADManager instance with a valid PWAD file,
+     * containing a bunch of maps.
+     * @throws Exception
+     */
+    @Test
+    public void testInstancingExistingPWADFileBunchOfMaps() throws Exception {
+        WADManager wm = new WADManager("assets/wad/test-udmf.wad");
+        assertEquals(wm.getMapIds().size(), 2);
+        wm.destroy();
+    }
 }

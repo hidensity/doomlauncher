@@ -17,15 +17,15 @@ public class Hacx2MapInfo extends MapInfo {
     private static final HashMap<String, String> mapNames;
     static {
         mapNames = new HashMap<>();
-        mapNames.put("MAP01", "Level 01: GenEmp Corp.");
-        mapNames.put("MAP02", "Level 02: Tunnel Town");
-        mapNames.put("MAP03", "Level 03: Lava Annex");
-        mapNames.put("MAP04", "Level 04: Alcatraz");
-        mapNames.put("MAP05", "Level 05: Cyber Circus");
-        mapNames.put("MAP06", "Level 06: Digi-Ota");
-        mapNames.put("MAP07", "Level 07: The Great Wall");
-        mapNames.put("MAP08", "Level 08: Garden of Delights");
-        mapNames.put("MAP09", "Level 09: Hidden Fortress");
+        mapNames.put("MAP01", "Level 1: GenEmp Corp.");
+        mapNames.put("MAP02", "Level 2: Tunnel Town");
+        mapNames.put("MAP03", "Level 3: Lava Annex");
+        mapNames.put("MAP04", "Level 4: Alcatraz");
+        mapNames.put("MAP05", "Level 5: Cyber Circus");
+        mapNames.put("MAP06", "Level 6: Digi-Ota");
+        mapNames.put("MAP07", "Level 7: The Great Wall");
+        mapNames.put("MAP08", "Level 8: Garden of Delights");
+        mapNames.put("MAP09", "Level 9: Hidden Fortress");
         mapNames.put("MAP10", "Level 10: Anarchist Dream");
         mapNames.put("MAP11", "Level 11: Notus Us!");
         mapNames.put("MAP12", "Level 12: Gothik Gauntlet");

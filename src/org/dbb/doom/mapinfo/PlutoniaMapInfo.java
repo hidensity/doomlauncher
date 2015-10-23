@@ -17,15 +17,15 @@ public class PlutoniaMapInfo extends MapInfo {
     private static final HashMap<String, String> mapNames;
     static {
         mapNames = new HashMap<>();
-        mapNames.put("MAP01", "Level 01: Congo");
-        mapNames.put("MAP02", "Level 02: Well of Souls");
-        mapNames.put("MAP03", "Level 03: Aztec");
-        mapNames.put("MAP04", "Level 04: Caged");
-        mapNames.put("MAP05", "Level 05: Ghost Town");
-        mapNames.put("MAP06", "Level 06: Baron's Lair");
-        mapNames.put("MAP07", "Level 07: Caughtyard");
-        mapNames.put("MAP08", "Level 08: Realm");
-        mapNames.put("MAP09", "Level 09: Abattoire");
+        mapNames.put("MAP01", "Level 1: Congo");
+        mapNames.put("MAP02", "Level 2: Well of Souls");
+        mapNames.put("MAP03", "Level 3: Aztec");
+        mapNames.put("MAP04", "Level 4: Caged");
+        mapNames.put("MAP05", "Level 5: Ghost Town");
+        mapNames.put("MAP06", "Level 6: Baron's Lair");
+        mapNames.put("MAP07", "Level 7: Caughtyard");
+        mapNames.put("MAP08", "Level 8: Realm");
+        mapNames.put("MAP09", "Level 9: Abattoire");
         mapNames.put("MAP10", "Level 10: Onslaught");
         mapNames.put("MAP11", "Level 11: Haunted");
         mapNames.put("MAP12", "Level 12: Speed");

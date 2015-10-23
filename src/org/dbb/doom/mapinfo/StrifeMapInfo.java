@@ -17,15 +17,15 @@ public class StrifeMapInfo extends MapInfo {
     private static final HashMap<String, String> mapNames;
     static {
         mapNames = new HashMap<>();
-        mapNames.put("MAP01", "AREA 01: Sanctuary");
-        mapNames.put("MAP02", "AREA 02: Town");
-        mapNames.put("MAP03", "AREA 03: Front Base");
-        mapNames.put("MAP04", "AREA 04: Power Station");
-        mapNames.put("MAP05", "AREA 05: Prison");
-        mapNames.put("MAP06", "AREA 06: Sewers");
-        mapNames.put("MAP07", "AREA 07: Castle");
-        mapNames.put("MAP08", "AREA 08: Audience Chamber");
-        mapNames.put("MAP09", "AREA 09: Castle: Programmer's Keep");
+        mapNames.put("MAP01", "AREA 1: Sanctuary");
+        mapNames.put("MAP02", "AREA 2: Town");
+        mapNames.put("MAP03", "AREA 3: Front Base");
+        mapNames.put("MAP04", "AREA 4: Power Station");
+        mapNames.put("MAP05", "AREA 5: Prison");
+        mapNames.put("MAP06", "AREA 6: Sewers");
+        mapNames.put("MAP07", "AREA 7: Castle");
+        mapNames.put("MAP08", "AREA 8: Audience Chamber");
+        mapNames.put("MAP09", "AREA 9: Castle: Programmer's Keep");
         mapNames.put("MAP10", "AREA 10: New Front Base");
         mapNames.put("MAP11", "AREA 11: Borderlands");
         mapNames.put("MAP12", "AREA 12: The Temple of the Oracle");
