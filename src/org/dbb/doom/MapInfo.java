@@ -1,7 +1,5 @@
 package org.dbb.doom;
 
-import com.sun.xml.internal.org.jvnet.mimepull.MIMEParsingException;
-
 import java.nio.channels.FileChannel;
 import java.util.Map;
 import java.util.TreeMap;
@@ -125,11 +123,12 @@ public class MapInfo {
     public Map<String, MapInfoEntry> getMapEntries(String regex) {
         TreeMap<String, MapInfoEntry> mapNames = new TreeMap<>();
 
-        // Add matching keys to map.
-        for (String key : mapEntries.keySet()) {
-            if (key.matches(regex)) {
-                mapNames.put(key, mapEntries.get(key));
-            }
+        if (null != this.mapEntries) {
+            // Add matching keys to map.
+            this.mapEntries.keySet().stream().filter(key ->
+                    key.matches(regex)).forEach(key ->
+                mapNames.put(key, mapEntries.get(key))
+            );
         }
 
         return mapNames;
